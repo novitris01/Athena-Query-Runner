@@ -1,6 +1,6 @@
-# Automate Lycos Mozenda Analysis
+# Athena Query Runner
 
-This Python script allows you to execute a list of SQL queries (`updated_analysis.sql`) on AWS Athena. It reads SQL queries from a file, splits them into individual queries, and executes each one.
+The Athena Query Runner is a Python script that enables you to execute SQL queries in AWS Athena, a serverless interactive query service. This script reads SQL files, splits them into individual queries, and submits them to Athena for execution. It handles query execution, status polling, and tracks the number of successful queries.
 
 ## Prerequisites
 
@@ -25,8 +25,11 @@ Before running the script, make sure you have the following prerequisites in pla
    ```bash
    aws sso login --profile=document
    ```
-
-4. **Execute the `generate_sql_script.py`**:
+4. Update the `profile` and `sql_file_path` variables as needed.
+   - `profile`: AWS profile name that you want to use for accessing Athena.
+   - `sql_file_path`: The path to the SQL file containing your queries.
+   
+5. **Execute the `generate_sql_script.py`**:
 
    - The script will read the SQL query template (`analysis.sql`) and generate new SQL scripts with updated parameters (`updated_analysis.sql`), such as the posting date and table name.
 
@@ -43,7 +46,7 @@ Before running the script, make sure you have the following prerequisites in pla
      python generate_sql_script.py
      ```
 
-5. **Execute `connect.py`**:
+6. **Execute `connect.py`**:
 
    - After generating a file named `updated_analysis.sql`, ensure that the file is in the same directory. Each SQL query should be separated by a semicolon (`;`).
 
@@ -54,3 +57,5 @@ Before running the script, make sure you have the following prerequisites in pla
    ```
 
 **Results**: The total number of successfully executed queries will be displayed at the end of execution.
+
+Feel free to modify and adapt this script according to your needs. Happy querying!
